@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Таблица из файла</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <script src="https://unpkg.com/mammoth@1.8.0/mammoth.browser.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="hero">
+        <p class="eyebrow">УМНАЯ ТАБЛИЦА</p>
+        <h1>Загрузите файл — получите удобную таблицу</h1>
+        <p class="lead">Excel читается по ячейкам. Word и JPG распознаются автоматически, после чего данные можно сортировать и искать.</p>
+      </section>
+
+      <section class="card upload-card" aria-labelledby="upload-heading">
+        <h2 id="upload-heading">1. Загрузите файл</h2>
+        <label class="dropzone" for="file-input" id="dropzone">
+          <span class="upload-icon">↑</span>
+          <strong>Выберите или перетащите файл</strong>
+          <span>Поддерживаются .xlsx, .xls, .csv, .docx, .jpg, .jpeg, .png</span>
+          <input id="file-input" type="file" accept=".xlsx,.xls,.csv,.docx,.jpg,.jpeg,.png" />
+        </label>
+        <p id="status" class="status" role="status">Файл пока не выбран.</p>
+      </section>
+
+      <section class="card controls" aria-label="Инструменты таблицы">
+        <div>
+          <label for="search">Поиск по всем столбцам</label>
+          <input id="search" type="search" placeholder="Например, Иванов или 2026" disabled />
+        </div>
+        <div>
+          <label for="column-select">Сортировать по столбцу</label>
+          <select id="column-select" disabled><option>Сначала загрузите файл</option></select>
+        </div>
+        <div class="sort-actions">
+          <button id="sort-asc" disabled>По возрастанию</button>
+          <button id="sort-desc" class="secondary" disabled>По убыванию</button>
+        </div>
+        <button id="download" class="download" disabled>Скачать CSV</button>
+      </section>
+
+      <section class="table-card" aria-live="polite">
+        <div class="table-heading"><h2>2. Ваши данные</h2><span id="row-count"></span></div>
+        <div id="table-wrap" class="table-wrap empty"><p>Здесь появится таблица после загрузки файла.</p></div>
+      </section>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>
